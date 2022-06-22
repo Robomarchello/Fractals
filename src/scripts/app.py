@@ -16,11 +16,11 @@ class App():
 
     def loop(self):
         screen = self.screen
+        
         while True:
             self.clock.tick(self.fps)
-
-            
             screen.fill((255, 255, 255))
+            
             self.sCarpet.draw(screen)  
 
             for event in pygame.event.get():

@@ -23,6 +23,7 @@ class sCarpet:
             squares = new_squares.copy()
 
             for square in new_squares:
+                #pygame.draw.circle(screen, self.color, square.center, square.width//2)
                 pygame.draw.rect(screen, self.color, square)
                 
     def slice_square(self, rect):
@@ -30,7 +31,7 @@ class sCarpet:
 
         squares = []
         cutSize = (rect.width // 3, rect.height // 3)
-        poses = [
+        directions = [
             pygame.Vector2(-rect.width, -rect.height),
             pygame.Vector2(0, -rect.height),
             pygame.Vector2(rect.width, -rect.height),
@@ -41,9 +42,9 @@ class sCarpet:
             pygame.Vector2(rect.width, rect.height),
         ]
 
-        for position in poses:
+        for direction in directions:
             new_rect = pygame.Rect((0, 0), cutSize)
-            new_rect.center = rect.center + position
+            new_rect.center = rect.center + direction
             squares.append(new_rect.copy())
 
         return squares
