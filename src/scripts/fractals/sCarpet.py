@@ -1,4 +1,3 @@
-from numpy import square
 import pygame
 
 class sCarpet:
