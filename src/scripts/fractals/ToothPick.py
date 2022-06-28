@@ -1,7 +1,5 @@
 #will try to write code after 11:00
 import pygame
-import pygame.gfxdraw 
-#use vline, hline
 
 class ToothPickSeq:
     def __init__(self, ScreenSize, steps):
@@ -23,6 +21,8 @@ class ToothPickSeq:
             [pygame.Vector2(self.center[0], self.center[1] - self.length),
             pygame.Vector2(self.center[0], self.center[1] + self.length)]
         ]
+
+        gae = time.perf_counter()
         for step in range(self.steps):
             NewToothPicks = []
             for ToothPick in self.active:
@@ -30,21 +30,25 @@ class ToothPickSeq:
             self.ToothPicks += self.active.copy()
             self.active = NewToothPicks
 
-        for ToothPick in self.ToothPicks:
-            pygame.draw.line(screen, self.color, ToothPick[0], ToothPick[1])
+        for ToothPick in self.ToothPicks:#pygame.gfxdraw
+            if ToothPick[0].x == ToothPick[1].x:
+                pygame.draw.line(screen, self.color, ToothPick[0], ToothPick[1])
+                
+            if ToothPick[0].y == ToothPick[1].y:
+                pygame.draw.line(screen, self.color, ToothPick[0], ToothPick[1])
             
         for ToothPick in self.active:
             pygame.draw.line(screen, pygame.Color('cyan'), ToothPick[0], ToothPick[1])
 
     def PlaceToothPicks(self, toothPick):
         AvailableSides = [True, True]
-
+        
         for side in toothPick:
             for i, tPick in enumerate(self.active):
                 if i != self.active.index(toothPick):
                     if tPick[0] == side or tPick[1] == side:
                         AvailableSides[toothPick.index(side)] = False
-                        #print(side)
+
             for tPick in self.ToothPicks:
                 if i != self.active.index(toothPick):
                     if tPick[0] == side or tPick[1] == side:

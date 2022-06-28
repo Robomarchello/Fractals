@@ -13,7 +13,7 @@ class App():
         self.clock = pygame.time.Clock()
 
         self.sCarpet = sCarpet(ScreenSize, 4)
-        self.ToothPickSeq = ToothPickSeq(ScreenSize, 1)
+        self.ToothPickSeq = ToothPickSeq(ScreenSize, 32)
 
         #write one of the fractals you want to run
         self.fractal = self.ToothPickSeq
