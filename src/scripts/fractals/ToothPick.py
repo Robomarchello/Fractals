@@ -22,7 +22,6 @@ class ToothPickSeq:
             pygame.Vector2(self.center[0], self.center[1] + self.length)]
         ]
 
-        gae = time.perf_counter()
         for step in range(self.steps):
             NewToothPicks = []
             for ToothPick in self.active:
